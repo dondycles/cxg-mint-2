@@ -22,6 +22,8 @@ import RednightBG from "../public/imgs/Rednight/rednight.webp";
 import SunsetBG from "../public/imgs/Sunset/sunset.webp";
 import NightBG from "../public/imgs/Night/night.webp";
 
+import Socmed from "../components/socmeds";
+
 // Put Your Edition Drop Contract address from the dashboard here
 const myEditionDropContractAddress =
   "0xDC8017E1E20BFF80a49B0B92F719f00170013B4F";
@@ -219,12 +221,16 @@ const Home: NextPage = () => {
     quantity,
   ]);
 
+  const [startMint, setStartMint] = useState(false);
+
   return (
     <>
       <Head>
         <title>CXGNUS</title>
         <link rel="shortcut icon" href="logo.ico" type="image/x-icon" />
       </Head>
+      <Socmed />
+      <audio id="audio" className=" hidden" src="../aud/ost3.mp3"></audio>
       <div
         className="fixed flex top-0 left-0 right-0 bottom-0 -z-10 
       "
@@ -235,7 +241,44 @@ const Home: NextPage = () => {
         />
       </div>
       <main className="flex absolute top-0 bottom-0 left-0 right-0 ">
-        <div className="flex flex-col w-[500px] h-[300px] bg-[#000000cd] m-auto rounded-2xl p-4">
+        {/*Inital mint card*/}
+
+        <div
+          className={`flex flex-col items-center justify-center fixed top-0 left-0 right-0 bottom-0 w-[500px] h-[300px] bg-[#000000cd] m-auto rounded-2xl p-4 transition-all duration-1000 ease-in-out ${
+            startMint
+              ? "opacity-[0%] pointer-events-none"
+              : "opacity-[100%] pointer-events-auto"
+          }`}
+        >
+          <div className="h-2 w-full bg-gradient-to-r from-transparent via-[#d80b31] to-transparent mt-0 mb-auto mx-auto rounded-lg bg-[length:200%] animate-redLineAnim "></div>
+          <div className="flex-1 flex flex-col items-center justify-center gap-3">
+            <p className=" text-left  w-[50%]">
+              SOME INSTRUCTIONS: Lorem ipsum dolor sit amet consectetur
+              adipisicing elit.
+            </p>
+            <button
+              className="bg-black px-6 py-3  border-slate-900 border-2 rounded-lg hover:bg-slate-900 active:bg-slate-800 cursor-pointer"
+              onClick={() => {
+                setStartMint(true);
+                var audio = document.querySelector("#audio");
+                audio.volume = 0.25;
+                audio.play();
+              }}
+            >
+              Start Minting
+            </button>
+          </div>
+        </div>
+
+        {/*Main mint card*/}
+        <div
+          className={`flex flex-col w-[500px] h-[300px] bg-[#000000cd] m-auto rounded-2xl p-4 transition-all duration-1000 ease-in-out
+          ${
+            startMint
+              ? "opacity-[100%] pointer-events-auto"
+              : "opacity-[0%] pointer-events-none"
+          }`}
+        >
           <div className="h-2 w-full bg-gradient-to-r from-transparent via-[#d80b31] to-transparent mt-0 mb-0 mx- auto rounded-lg bg-[length:200%] animate-redLineAnim"></div>
           {isLoading ? (
             <p className="">Loading...</p>
