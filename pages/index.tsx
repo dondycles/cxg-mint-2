@@ -238,7 +238,7 @@ const Home: NextPage = () => {
         <div className="flex flex-col w-[500px] h-[300px] bg-[#000000cd] m-auto rounded-2xl p-4">
           <div className="h-2 w-full bg-gradient-to-r from-transparent via-[#d80b31] to-transparent mt-0 mb-0 mx- auto rounded-lg bg-[length:200%] animate-redLineAnim"></div>
           {isLoading ? (
-            <p>Loading...</p>
+            <p className="">Loading...</p>
           ) : (
             <div className=" m-auto">
               {/* Amount claimed so far */}
@@ -292,29 +292,35 @@ const Home: NextPage = () => {
                       </button>
                     </div>
                   </div>
-
-                  <div className="">
-                    {isSoldOut ? (
-                      <div>
-                        <h2>Sold Out</h2>
-                      </div>
-                    ) : (
-                      <Web3Button
-                        contractAddress={editionDrop?.getAddress() || ""}
-                        action={(cntr) => cntr.erc1155.claim(tokenId, quantity)}
-                        isDisabled={!canClaim || buttonLoading}
-                        onError={(err) => {
-                          console.error(err);
-                          alert("Error claiming NFTs");
-                        }}
-                        onSuccess={() => {
-                          setQuantity(1);
-                          alert("Successfully claimed NFTs");
-                        }}
-                      >
-                        {buttonLoading ? "Loading..." : buttonText}
-                      </Web3Button>
-                    )}
+                  <div className="flex flex-col gap-2">
+                    <div className="">
+                      {isSoldOut ? (
+                        <div>
+                          <h2>Sold Out</h2>
+                        </div>
+                      ) : (
+                        <Web3Button
+                          contractAddress={editionDrop?.getAddress() || ""}
+                          action={(cntr) =>
+                            cntr.erc1155.claim(tokenId, quantity)
+                          }
+                          isDisabled={!canClaim || buttonLoading}
+                          onError={(err) => {
+                            console.error(err);
+                            alert("Error claiming NFTs");
+                          }}
+                          onSuccess={() => {
+                            setQuantity(1);
+                            alert("Successfully claimed NFTs");
+                          }}
+                        >
+                          {buttonLoading ? "Loading..." : buttonText}
+                        </Web3Button>
+                      )}
+                    </div>
+                    <div className="w-full bg-black rounded-md border-2 border-gray-800 p-2 text-center hover:bg-slate-900 active:bg-slate-800 cursor-pointer">
+                      <button>MINT</button>
+                    </div>
                   </div>
                 </div>
               )}
