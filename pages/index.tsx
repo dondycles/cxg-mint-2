@@ -221,8 +221,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>CXGNUS</title>
-        <link rel="shortcut icon" href="logo.ico" type="image/x-icon" />
+        <title>Studio CXGNUS</title>
       </Head>
       <Socmed />
       <audio id="audioPlayer" className=" hidden" src="../aud/ost3.mp3"></audio>
@@ -240,12 +239,15 @@ const Home: NextPage = () => {
         >
           <div className="h-2 w-full bg-gradient-to-r from-transparent via-[#d80b31] to-transparent mt-0 mb-auto mx-auto rounded-lg bg-[length:200%] animate-redLineAnim "></div>
           <div className="flex-1 flex flex-col items-center justify-center gap-3">
-            <p className=" text-left  w-[50%]">
-              SOME INSTRUCTIONS: Lorem ipsum dolor sit amet consectetur
-              adipisicing elit.
-            </p>
+            <div className="flex-1 flex items-center">
+              <p className=" text-left  ">
+                SOME INSTRUCTIONS: Lorem ipsum dolor sit amet consectetur
+                adipisicing elit.
+              </p>
+            </div>
+
             <button
-              className="bg-black px-6 py-3  border-red-800 border-2 rounded-lg hover:bg-red-800 active:bg-red-700 cursor-pointer"
+              className="bg-black px-6 py-3  border-red-800 border-2 rounded-lg hover:bg-red-800 active:bg-red-700 cursor-pointer w-full"
               onClick={() => {
                 setStartMint(true);
                 var audio = document.querySelector("#audioPlayer");
@@ -257,7 +259,6 @@ const Home: NextPage = () => {
             </button>
           </div>
         </div>
-
         {/*Main mint card*/}
         <div
           className={`flex flex-col w-[500px] h-[300px] bg-[#000000cd] m-auto rounded-2xl p-4 transition-all duration-1000 ease-in-out
@@ -356,19 +357,20 @@ const Home: NextPage = () => {
                         </Web3Button>
                       )}
                     </div>
-                    <div
+                    <button
                       className={`w-full font-extrabold bg-black rounded-md border-2 border-red-800 p-2 text-center hover:bg-red-800 active:bg-red-700 cursor-pointer
                     ${isSoldOut ? " hidden " : " "}
                     `}
                     >
-                      <button>Mint</button>
-                    </div>
+                      Mint
+                    </button>
                   </div>
                 </div>
               )}
             </div>
           )}
         </div>
+        s
       </main>
     </>
   );
